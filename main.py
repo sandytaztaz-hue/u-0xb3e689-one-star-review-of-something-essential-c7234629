@@ -1,12 +1,9 @@
-#!/usr/bin/env python3
-"""One-star review of gravity: it drops the fragile thing face-down."""
-import pathlib
+from pathlib import Path
 
-LINE = "One star. Gravity waits until I am carrying something fragile, then drops it face-down. It never misses."
+LINE = "One star. Time moves slowest in waiting rooms and fastest on holiday, and refuses to explain the difference."
 
-def main():
-    pathlib.Path("/output").mkdir(parents=True, exist_ok=True)
-    pathlib.Path("/output/entry.txt").write_text(LINE + "\n", encoding="utf-8")
-
-if __name__ == "__main__":
-    main()
+out = Path("/output/entry.txt")
+out.parent.mkdir(parents=True, exist_ok=True)
+text = LINE.strip()
+assert 1 <= len(text) <= 160
+out.write_text(text, encoding="utf-8")
